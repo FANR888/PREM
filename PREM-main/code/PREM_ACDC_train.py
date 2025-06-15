@@ -168,7 +168,6 @@ def generate_mask(img,pattern):
         loss_mask[:, w:w+patch_x, h:h+patch_y] = 0
     return mask.long(), loss_mask.long()
 
-#计算Dice损失和交叉熵损失的结合
 def mix_loss(output, img_l, patch_l, mask, l_weight=1.0, u_weight=0.5, unlab=False):
     CE = nn.CrossEntropyLoss(reduction='none')
     img_l, patch_l = img_l.type(torch.int64), patch_l.type(torch.int64)
